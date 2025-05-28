@@ -51,3 +51,4 @@ for index, row in test_df.iterrows():
     llm_response = generate_with_rag(row['question'])
     print(f"User Query: {row['question']}")
     print(f"LLM Response: {llm_response}\n")
+print()
