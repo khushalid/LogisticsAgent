@@ -61,24 +61,24 @@ A system for managing and querying shipment data using Neo4j graph database, wit
 
 ## 💻 Installation
 
-1. **Clone Repository**
+**1. Clone Repository**
 ```python
 git clone [your-repo-url]
 cd [your-repo-name]
 ```
 
-2. **Create and activate a virtual environment:**
+**2. Create and activate a virtual environment:**
 ```python
 python -m venv env
 source env/bin/activate # On Windows use `env\Scripts\activate`
 ```
 
-3. **Install dependencies:**
+**3. Install dependencies:**
 ```python
 pip install -r requirements.txt
 ```
-
-3. **Neo4j Setup**
+</br>
+**4. Neo4j Setup**
 - Option 1: Install via Neo4j Desktop (https://neo4j.com/download/)
   Create database with credentials:
     URI: `bolt://localhost:7687`
@@ -94,7 +94,7 @@ pip install -r requirements.txt
     ```
   Access Neo4j browser at http://localhost:7474/ (login: neo4j / yourpassword)
 
-4. **Environment Variables**
+**4. Environment Variables**
 ```
 echo "OPENAI_API_KEY=<your_openai_key" > .env
 ```
@@ -135,7 +135,7 @@ python3 bots/no_context_bot.py
 ```
 python3 bots/few_shot_bot.py
 ```
-3. Evaluate RAG Bot
+4. Evaluate RAG Bot
 ```
 python3 -m bots.rag_bot
 ```
