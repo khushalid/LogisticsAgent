@@ -2,3 +2,5 @@ openai
 python-dotenv
 langchain
 langchain[openai]
+neo4j 
+pandas
