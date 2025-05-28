@@ -148,7 +148,18 @@ python3 -m bots.rag_bot
 4. Factual Consistency
 
 
+## 📈 Results
+Full results in `data/evaluation_summary.txt`
 
+## 🔮 Future Work
+- Add temporal query support
+- Implement hybrid RAG+FewShot approach
+- Implement Fine-tuning as you get more data
+- Containerize with Docker
+- Add web interface
+- Expand to multi-modal queries
 
+---
 
-
+**Author**: Khushali Daga 
+**Contact**: https://linkedin.com/in/khushalid
