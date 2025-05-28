@@ -74,11 +74,13 @@ source env/bin/activate # On Windows use `env\Scripts\activate`
 pip install -r requirements.txt
 ```
 **4. Neo4j Setup**
-- Option 1: Install via Neo4j Desktop (https://neo4j.com/download/)
+- Option 1: Install via Neo4j Desktop (https://neo4j.com/download/)<br></br>
   Create database with credentials:
-    URI: `bolt://localhost:7687`
-    User: `neo4j`
-    Password: `yourpassword`
+  ```
+  URI: `bolt://localhost:7687`
+  User: `neo4j`
+  Password: `yourpassword`
+  ```
 - Option 2: Docker
     ```bash
     docker run \
@@ -88,6 +90,7 @@ pip install -r requirements.txt
       neo4j:2025.04.0
     ```
   Access Neo4j browser at http://localhost:7474/ (login: neo4j / yourpassword)
+  
 **5. Environment Variables**
 ```
 echo "OPENAI_API_KEY=<your_openai_key" > .env
