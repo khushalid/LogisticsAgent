@@ -1,7 +1,7 @@
 # Logistics Agent
 
 A system for managing and querying shipment data using Neo4j graph database, with multiple query generation strategies (RAG, No-Context, Few-Shot) and comprehensive evaluation.
-
+<br></br>
 ## 📌 Table of Contents
 - [Project Overview](#-project-overview)
 - [Key Features](#-key-features)
@@ -11,7 +11,7 @@ A system for managing and querying shipment data using Neo4j graph database, wit
 - [Evaluation](#-evaluation)
 - [Results](#-results)
 - [Future Work](#-future-work)
-
+<br></br>
 ## 🌟 Project Overview
 **Objective**: Create an intelligent logistics agent that can:
 - Convert natural language queries to Cypher
@@ -22,25 +22,24 @@ A system for managing and querying shipment data using Neo4j graph database, wit
 - Graph database capabilities for logistics
 - Comparison of RAG vs traditional approaches
 - Automated evaluation framework for NL-to-Cypher systems
-
+<br></br>
 ## 🚀 Key Features
-1. **Multi-Strategy Query Generation**
+**1. Multi-Strategy Query Generation**
    - **No-Context Bot**: Pure LLM Cypher generation
    - **Few-Shot Bot**: Example-based learning
    - **RAG Bot**: Context-aware retrieval
 
-2. **Evaluation Framework**
+**2. Evaluation Framework**
    - Cypher syntax accuracy
    - Execution correctness
    - Semantic similarity metrics
 
-3. **Data Pipeline**
+**3. Data Pipeline**
    - Automated Neo4j population
    - Train/test dataset splitting
    - Expected output generation
-
+<br></br>
 ## 🛠 Technical Implementation
-
 ### Tech Stack
 - **Database**: Neo4j
 - **LLM**: OpenAI GPT-4
@@ -58,26 +57,22 @@ A system for managing and querying shipment data using Neo4j graph database, wit
 ├── run.sh # Main execution script
 └── requirements.txt # Dependencies
 ```
-
+<br></br>
 ## 💻 Installation
-
 **1. Clone Repository**
 ```python
 git clone [your-repo-url]
 cd [your-repo-name]
 ```
-
 **2. Create and activate a virtual environment:**
 ```python
 python -m venv env
 source env/bin/activate # On Windows use `env\Scripts\activate`
 ```
-
 **3. Install dependencies:**
 ```python
 pip install -r requirements.txt
 ```
-</br>
 **4. Neo4j Setup**
 - Option 1: Install via Neo4j Desktop (https://neo4j.com/download/)
   Create database with credentials:
@@ -93,14 +88,12 @@ pip install -r requirements.txt
       neo4j:2025.04.0
     ```
   Access Neo4j browser at http://localhost:7474/ (login: neo4j / yourpassword)
-
-**4. Environment Variables**
+**5. Environment Variables**
 ```
 echo "OPENAI_API_KEY=<your_openai_key" > .env
 ```
-
+<br></br>
 ## 🏃 Usage
-
 **Full Pipeline Execution**
 ```
 ./run.sh
@@ -135,24 +128,23 @@ python3 bots/no_context_bot.py
 ```
 python3 bots/few_shot_bot.py
 ```
-4. Evaluate RAG Bot
+3. Evaluate RAG Bot
 ```
-python3 -m bots.rag_bot
+python3 bots/rag_bot.py
 ```
-
-
+<br></br>
 ## 📊 Evaluation
-
 **Metrics**
 1. Cypher Exact Match Accuracy
-2. Execution Result Accuracy
-3. Semantic Similarity (Answer Relevancy)
-4. Factual Consistency
-
-
+2. Cypher Relevancy Score
+3. Cypher Correctness Score
+4. Answer Exact Match Accuracy
+5. Answer Relevancy Score
+6. Answer Correctness Score
+<br></br>
 ## 📈 Results
 Full results in `data/evaluation_summary.txt`
-
+<br></br>
 ## 🔮 Future Work
 - Add temporal query support
 - Implement hybrid RAG+FewShot approach
@@ -163,5 +155,5 @@ Full results in `data/evaluation_summary.txt`
 
 ---
 
-**Author**: Khushali Daga 
+**Author**: Khushali Daga <br></br>
 **Contact**: https://linkedin.com/in/khushalid
