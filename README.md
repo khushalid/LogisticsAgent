@@ -96,7 +96,58 @@ pip install -r requirements.txt
 ```
 echo "OPENAI_API_KEY=your_openai_key" > .env
 ```
-6. 
+
+## 🏃 Usage
+
+**Full Pipeline Execution**
+```
+./run.sh
+```
+
+
+**Individual Components**
+1. Populate Neo4j
+```
+python3 scripts/populate_neo4j.py \
+    --password "yourpassword" \
+    --clear \
+    --input data/shipments.json \
+    --verify
+```
+2. Generate Expected output
+```
+python3 scripts/generate_expected_output.py \
+    --neo4j-password "yourpassword" \
+    --input data/cypher_eval.csv \
+    --output data/cypher_eval_with_results.csv
+```
+3. Generate Test Data
+```
+python3 -m scripts.generate_dataset --test-size 0.2
+```
+4. Evaluate No-Context Bot
+```
+python3 bots/no_context_bot.py
+```
+5. Evaluate Few-Shot Bot
+```
+python3 bots/few_shot_bot.py
+```
+3. Evaluate RAG Bot
+```
+python3 -m bots.rag_bot
+```
+
+
+## 📊 Evaluation
+
+**Metrics**
+1. Cypher Exact Match Accuracy
+2. Execution Result Accuracy
+3. Semantic Similarity (Answer Relevancy)
+4. Factual Consistency
+
+
 
 
 
