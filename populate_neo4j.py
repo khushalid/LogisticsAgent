@@ -16,6 +16,9 @@ def create_graph(tx, shipment):
     tx.run("""
         MERGE (s:Shipment {tracking_number: $tracking_number})
         SET s.status = $status, s.dispatch_date = $dispatch_date, s.expected_delivery_date = $expected_delivery_date
+        FOREACH (_ IN CASE WHEN $status = "Delivered" THEN [1] ELSE [] END | 
+            SET s.delivery_date = $delivery_date
+        )
 
         MERGE (d_loc:Location {name: $dispatch_location})
         MERGE (del_loc:Location {name: $delivery_location})
@@ -61,22 +64,18 @@ def get_shipment_details(tracking_number):
 
 
 
-with driver.session() as session:
-    for shipment in shipments:
-        session.execute_write(create_graph, shipment)
+# with driver.session() as session:
+#     for shipment in shipments:
+#         session.execute_write(create_graph, shipment)
 
-print("✅ Data loaded into Neo4j!")
+# print("✅ Data loaded into Neo4j!")
 
 # get_shipment_details("1234")
 
-# def get_schema():
-#     with driver.session() as session:
-#         result = session.run("""MATCH (s:Shipment {tracking_number: '3141'})-[:ASSIGNED_TO]->(courier:Courier)
-#                                 RETURN courier.name AS courier_assigned""")
-#         print(result.single())
-#         # data = result.single()
-#         # return data["nodes"], data["relationships"]
-# get_schema()
-# nodes, relationships = get_schema()
-# print("Nodes:", nodes)
-# print("Relationships:", relationships)
+def get_schema(query):
+    with driver.session() as session:
+        result = session.run(query)
+        return [record.data() for record in result]
+print(get_schema("MATCH (s:Shipment)-[r:DISPATCHED_FROM|DELIVERED_TO]->(l:Location) RETURN l.name as route, count(*) as count ORDER BY count DESC LIMIT 1"))
+
+
