@@ -96,7 +96,7 @@ pip install -r requirements.txt
 
 4. **Environment Variables**
 ```
-echo "OPENAI_API_KEY=your_openai_key" > .env
+echo "OPENAI_API_KEY=<your_openai_key" > .env
 ```
 
 ## 🏃 Usage
