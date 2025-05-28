@@ -41,7 +41,7 @@ with driver.session() as session:
                     formatted_results.append("; ".join(f"{k}:{v}" for k,v in record.items()))
                 
                 # Update expected_output
-                row['expected_output'] = " | ".join(formatted_results)
+                row['expected_output'] = result
                 
             except Exception as e:
                 row['expected_output'] = f"Error: {str(e)}"

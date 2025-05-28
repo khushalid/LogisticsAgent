@@ -7,3 +7,4 @@ pandas
 deepeval
 sentence-transformers
 pip install faiss-cpu
+langchain-community
