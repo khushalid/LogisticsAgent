@@ -85,7 +85,7 @@ pip install -r requirements.txt
     User: `neo4j`
     Password: `yourpassword`
 - Option 2: Docker
-    ```
+    ```bash
     docker run \
       --restart always \ 
       --publish=7474:7474 --publish=7687:7687 \
