@@ -49,13 +49,15 @@ A system for managing and querying shipment data using Neo4j graph database, wit
 - **Language**: Python 3.12
 
 ### Directory Structure
+```bash
+.
 ├── bots/ # Query generation implementations
 ├── core/ # Database and evaluation core
 ├── data/ # Datasets and results
 ├── scripts/ # Data processing scripts
 ├── run.sh # Main execution script
 └── requirements.txt # Dependencies
-
+```
 
 ## 💻 Installation
 
