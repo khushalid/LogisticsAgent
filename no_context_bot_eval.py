@@ -67,7 +67,6 @@ def evaluate_row(row):
     try:
         user_query = row['question']
         expected_cypher = row['cypher']
-        print(execute_cypher)
         expected_answer = row['expected_output']
         
         # Get LLM response
@@ -120,7 +119,6 @@ def evaluate_row(row):
 if __name__ == "__main__":
     df = pd.read_csv('cypher_eval_with_results.csv')
     results = [evaluate_row(row) for _, row in df.iterrows()]
-    print(results)
     eval_df = pd.DataFrame(results)
     eval_df.to_csv("evaluation_results.csv", index=False)
     

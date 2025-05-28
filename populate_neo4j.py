@@ -64,11 +64,11 @@ def get_shipment_details(tracking_number):
 
 
 
-# with driver.session() as session:
-#     for shipment in shipments:
-#         session.execute_write(create_graph, shipment)
+with driver.session() as session:
+    for shipment in shipments:
+        session.execute_write(create_graph, shipment)
 
-# print("✅ Data loaded into Neo4j!")
+print("✅ Data loaded into Neo4j!")
 
 # get_shipment_details("1234")
 
@@ -76,6 +76,6 @@ def get_schema(query):
     with driver.session() as session:
         result = session.run(query)
         return [record.data() for record in result]
-print(get_schema("MATCH (s:Shipment)-[r:DISPATCHED_FROM|DELIVERED_TO]->(l:Location) RETURN l.name as route, count(*) as count ORDER BY count DESC LIMIT 1"))
+print(get_schema("MATCH (s:Shipment {tracking_number: '4014'})-[:ASSIGNED_TO]->(c:Courier) RETURN c.name"))
 
 

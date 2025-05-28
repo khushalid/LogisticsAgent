@@ -1,67 +1,95 @@
 user_query,cypher_exact_match,cypher_relevancy_score,cypher_correctness_score,execution_accuracy,answer_relevancy_score,answer_correctness_score,llm_cypher,llm_answer,error
-When was shipment 4000 delivered?,False,0.5,0.29718396514840645,False,1.0,0.22595653034736665,"MATCH (s:Shipment {tracking_number: '4000'})-[:DELIVERED_TO]->(l:Location) RETURN s.tracking_number, s.expected_delivery_date","[{'s.tracking_number': '4000', 's.expected_delivery_date': '2024-06-05'}]",
-Which shipments did SwiftExpress deliver early?,False,0.6666666666666666,0.3592639449313061,False,1.0,0.06629714633866557,"MATCH (s:Shipment)-[:DELIVERED_TO]->(l:Location)
-WHERE l.name = ""SwiftExpress"" AND s.status = ""Delivered Early""
+When was shipment 4000 delivered?,False,1.0,0.30426648200223294,False,1.0,0.15825050096633297,"MATCH (s:Shipment {tracking_number: '4000'})-[:DELIVERED_TO]->(l:Location) 
+RETURN s.tracking_number AS tracking_number, l.name AS delivery_location","[{'tracking_number': '4000', 'delivery_location': 'Austin'}]",
+Which shipments did SwiftExpress deliver early?,False,0.6666666666666666,0.32150255077427026,False,1.0,0.06473470419934828,"MATCH (s:Shipment)-[:DELIVERED_TO]->(l:Location)
+WHERE l.name = ""SwiftExpress"" AND s.dispatch_date < s.expected_delivery_date
 RETURN s.tracking_number",[],
-Show all shipments going to San Diego,False,1.0,0.7413729637481252,False,1.0,0.6406704950973753,MATCH (s:Shipment)-[:DELIVERED_TO]->(l:Location {name: 'San Diego'}) RETURN s.tracking_number,"[{'s.tracking_number': '4012'}, {'s.tracking_number': '4005'}, {'s.tracking_number': '4004'}]",
-What shipments does Carol Lee have?,False,1.0,0.5169137139306653,False,1.0,0.04077589237231435,MATCH (c:Customer {name: 'Carol Lee'})-[:BELONGS_TO]->(s:Shipment) RETURN s.tracking_number,[],
-"List shipments dispatched between May 25-31, 2024",False,0.8,0.49166688415102644,False,0.0,0.16440410481677387,"MATCH (s:Shipment)-[:DISPATCHED_FROM]->(l:Location)
+Show all shipments going to San Diego,False,1.0,0.7635881926578335,False,1.0,0.7828938588153916,MATCH (s:Shipment)-[:DELIVERED_TO]->(l:Location {name: 'San Diego'}) RETURN s.tracking_number,"[{'s.tracking_number': '4012'}, {'s.tracking_number': '4005'}, {'s.tracking_number': '4004'}]",
+What shipments does Carol Lee have?,False,1.0,0.6006517231850925,False,1.0,0.127475667837936,MATCH (c:Customer {name: 'Carol Lee'})-[:BELONGS_TO]->(s:Shipment) RETURN s.tracking_number,[],
+"List shipments dispatched between May 25-31, 2024",False,0.8,0.5326673511092327,False,0.0,0.20771981731960842,"MATCH (s:Shipment)-[:DISPATCHED_FROM]->(l:Location)
 WHERE s.dispatch_date >= '2024-05-25' AND s.dispatch_date <= '2024-05-31'
 RETURN s.tracking_number, l.name","[{'s.tracking_number': '1234', 'l.name': 'New York'}, {'s.tracking_number': '1121', 'l.name': 'Boston'}, {'s.tracking_number': '4003', 'l.name': 'Denver'}, {'s.tracking_number': '4006', 'l.name': 'Orlando'}, {'s.tracking_number': '4009', 'l.name': 'San Diego'}, {'s.tracking_number': '4011', 'l.name': 'New York'}, {'s.tracking_number': '4012', 'l.name': 'Portland'}]",
-Is shipment 4002 still in transit?,False,1.0,0.725520589217368,False,1.0,0.6299034229740424,MATCH (s:Shipment {tracking_number: '4002'}) RETURN s.status,[{'s.status': 'In Transit'}],
-Who's handling shipment 4014?,False,0.5,0.7549823547764383,False,1.0,0.6845284586690101,MATCH (s:Shipment {tracking_number: '4014'})-[:ASSIGNED_TO]->(courier:Courier) RETURN courier.name AS courier_handling,[{'courier_handling': 'ParcelPro'}],
-Where is shipment 4003 coming from and going to?,False,1.0,0.7465314671332336,False,1.0,0.8443964866800332,"MATCH (s:Shipment {tracking_number: '4003'})-[:DISPATCHED_FROM]->(from:Location), 
-      (s)-[:DELIVERED_TO]->(to:Location) 
+Is shipment 4002 still in transit?,False,1.0,0.7018942568754732,False,1.0,0.5721763903938835,MATCH (s:Shipment {tracking_number: '4002'}) RETURN s.status,[{'s.status': 'In Transit'}],
+Who's handling shipment 4014?,False,1.0,0.6504087565515466,False,1.0,0.7649801146278479,"MATCH (s:Shipment {tracking_number: '4014'})
+    OPTIONAL MATCH (s)-[:ASSIGNED_TO]->(courier:Courier)
+    RETURN courier.name AS courier_handling",[{'courier_handling': 'ParcelPro'}],
+Where is shipment 4003 coming from and going to?,False,1.0,0.7533344968283127,False,1.0,0.8455416173754793,"MATCH (s:Shipment {tracking_number: '4003'})-[:DISPATCHED_FROM]->(from:Location), (s)-[:DELIVERED_TO]->(to:Location) 
 RETURN from.name AS dispatch_location, to.name AS delivery_location","[{'dispatch_location': 'Denver', 'delivery_location': 'Philadelphia'}]",
-Was shipment 4019 delivered on time?,False,1.0,0.3437429340709815,False,1.0,0.19692417084273847,"MATCH (s:Shipment {tracking_number: '4019'}) RETURN s.expected_delivery_date, s.actual_delivery_date","[{'s.expected_delivery_date': '2024-06-08', 's.actual_delivery_date': None}]",
-Show all undelivered Phoenix-bound shipments,False,1.0,0.2863590253995924,False,1.0,0.1254343287118947,"MATCH (s:Shipment)-[:DELIVERED_TO]->(l:Location {name: 'Phoenix'}) 
+Was shipment 4019 delivered on time?,False,1.0,0.2858980014955832,False,1.0,0.2,"MATCH (s:Shipment {tracking_number: '4019'})-[:DELIVERED_TO]->(l:Location) 
+RETURN s.tracking_number AS tracking_number, 
+       s.expected_delivery_date AS expected_delivery_date, 
+       l.name AS delivery_location","[{'tracking_number': '4019', 'expected_delivery_date': '2024-06-08', 'delivery_location': 'Phoenix'}]",
+What's the contact info for Bob Johnson's shipment 4009?,False,1.0,0.24229631780743968,False,0.0,0.17193207671428393,"MATCH (c:Customer {name: 'Bob Johnson'})-[:BELONGS_TO]->(s:Shipment {tracking_number: '4009'})-[:ASSIGNED_TO]->(courier:Courier)
+RETURN courier.contact_info",[],
+Show all undelivered Phoenix-bound shipments,False,1.0,0.3793902091385283,False,1.0,0.2465999714454142,"MATCH (s:Shipment)-[:DELIVERED_TO]->(l:Location {name: 'Phoenix'}) 
 WHERE NOT EXISTS((s)-[:DELIVERED_TO]->()) 
 RETURN s.tracking_number",[],
-List delayed ParcelPro shipments,False,1.0,0.3618358799079212,False,0.0,0.021671368094195412,"MATCH (s:Shipment {status: 'Delayed', carrier: 'ParcelPro'}) RETURN s.tracking_number",[],
-Which San Francisco shipments haven't been dispatched?,False,0.3333333333333333,0.48482618166229885,False,1.0,0.12650416216896263,"MATCH (s:Shipment)-[:DISPATCHED_FROM]->(l:Location {name: 'San Francisco'})
-WHERE NOT (s)-[:DISPATCHED_FROM]->()
-RETURN s.tracking_number",[],
-Show all Denver to Philadelphia shipments,False,1.0,0.7127214095904667,False,1.0,0.1151767460766826,MATCH (s:Shipment)-[:DISPATCHED_FROM]->(denver:Location {name: 'Denver'})-[:DELIVERED_TO]->(philadelphia:Location {name: 'Philadelphia'}) RETURN s.tracking_number,[],
-When will Mona Patel's 4019 shipment arrive?,False,1.0,0.8180526887145012,False,1.0,0.5247722790128722,"MATCH (s:Shipment)-[:BELONGS_TO]->(c:Customer {name: 'Mona Patel'}) 
+List delayed ParcelPro shipments,False,1.0,0.440997086227076,True,1.0,1.0,"MATCH (s:Shipment {carrier: 'ParcelPro', status: 'Delayed'}) RETURN s.tracking_number",[],
+Which San Francisco shipments haven't been dispatched?,False,0.3333333333333333,0.34601722648975797,False,1.0,0.06702185004713225,MATCH (s:Shipment)-[:DISPATCHED_FROM]->(l:Location {name: 'San Francisco'}) WHERE NOT EXISTS((s)-[:DISPATCHED_FROM]->()) RETURN s.tracking_number,[],
+Show all Denver to Philadelphia shipments,False,1.0,0.6926812296810626,False,1.0,0.1269622029947171,MATCH (s:Shipment)-[:DISPATCHED_FROM]->(denver:Location {name: 'Denver'})-[:DELIVERED_TO]->(philadelphia:Location {name: 'Philadelphia'}) RETURN s.tracking_number,[],
+When will Mona Patel's 4019 shipment arrive?,False,1.0,0.8153318407022982,True,1.0,0.9984093606422159,"MATCH (s:Shipment)-[:BELONGS_TO]->(c:Customer {name: 'Mona Patel'}) 
 WHERE s.tracking_number = '4019' 
 RETURN s.expected_delivery_date",[{'s.expected_delivery_date': '2024-06-08'}],
 Find shipments without dispatch dates,,,,,,,,,"{code: Neo.ClientError.Statement.SyntaxError} {message: The property existence syntax `... exists(variable.property)` is no longer supported. Please use `variable.property IS NOT NULL` instead. (line 2, column 11 (offset: 29))
 ""WHERE NOT EXISTS(s.dispatch_date)""
            ^}"
-List FastShip deliveries to Miami,False,1.0,0.4272774175815493,False,0.0,0.20151504514263427,MATCH (s:Shipment)-[:DELIVERED_TO]->(l:Location {name: 'Miami'})<-[:DISPATCHED_FROM]-(s)-[:ASSIGNED_TO]->(c:Courier {name: 'FastShip'}) RETURN s.tracking_number,[],
+List FastShip deliveries to Miami,False,1.0,0.35737129882126023,False,0.0,0.24669183840289238,"MATCH (s:Shipment)-[:DELIVERED_TO]->(l:Location {name: 'Miami'}) 
+WHERE s.status = 'FastShip' 
+RETURN s.tracking_number",[],
 How many QuickMove shipments are pending?,,,,,,,,,"{code: Neo.ClientError.Statement.SyntaxError} {message: Invalid input 'To': expected 'FOREACH', 'ALTER', 'ORDER BY', 'CALL', 'USING PERIODIC COMMIT', 'CREATE', 'LOAD CSV', 'START DATABASE', 'STOP DATABASE', 'DEALLOCATE', 'DELETE', 'DENY', 'DETACH', 'DROP', 'DRYRUN', 'FINISH', 'GRANT', 'INSERT', 'LIMIT', 'MATCH', 'MERGE', 'NODETACH', 'OFFSET', 'OPTIONAL', 'REALLOCATE', 'REMOVE', 'RENAME', 'RETURN', 'REVOKE', 'ENABLE SERVER', 'SET', 'SHOW', 'SKIP', 'TERMINATE', 'UNWIND', 'USE' or 'WITH' (line 1, column 1 (offset: 0))
 ""To find out how many QuickMove shipments are pending, you can use the following Cypher query:""
  ^}"
-What's the oldest undelivered shipment?,False,1.0,0.5808688869946972,False,1.0,0.109687790096052,"MATCH (s:Shipment {status: 'Undelivered'})
-RETURN s.tracking_number
-ORDER BY s.dispatch_date ASC
-LIMIT 1",[],
+What's the oldest undelivered shipment?,,,,,,,,,"{code: Neo.ClientError.Statement.SyntaxError} {message: The property existence syntax `... exists(variable.property)` is no longer supported. Please use `variable.property IS NOT NULL` instead. (line 2, column 7 (offset: 49))
+""WHERE exists(s.expected_delivery_date)""
+       ^}"
 Show all routes from Minneapolis,,,,,,,,,"{code: Neo.ClientError.Statement.SyntaxError} {message: Invalid input 'To': expected 'FOREACH', 'ALTER', 'ORDER BY', 'CALL', 'USING PERIODIC COMMIT', 'CREATE', 'LOAD CSV', 'START DATABASE', 'STOP DATABASE', 'DEALLOCATE', 'DELETE', 'DENY', 'DETACH', 'DROP', 'DRYRUN', 'FINISH', 'GRANT', 'INSERT', 'LIMIT', 'MATCH', 'MERGE', 'NODETACH', 'OFFSET', 'OPTIONAL', 'REALLOCATE', 'REMOVE', 'RENAME', 'RETURN', 'REVOKE', 'ENABLE SERVER', 'SET', 'SHOW', 'SKIP', 'TERMINATE', 'UNWIND', 'USE' or 'WITH' (line 1, column 1 (offset: 0))
 ""To show all routes from Minneapolis, you can use the following Cypher query:""
  ^}"
-Which customers have shipments from San Francisco?,False,1.0,0.4467751928264946,False,0.0,0.035895943968849556,"MATCH (c:Customer)-[:BELONGS_TO]-(s:Shipment)-[:DISPATCHED_FROM]->(:Location {name: 'San Francisco'})
-RETURN DISTINCT c.name as customer_name","[{'customer_name': 'Paula Green'}, {'customer_name': 'David Kim'}, {'customer_name': 'Carol Lee'}]",
-"List shipments expected to arrive after June 1, 2024",True,1.0,1.0,False,1.0,0.7219951646288358,MATCH (s:Shipment) WHERE s.expected_delivery_date > '2024-06-01' RETURN s.tracking_number,"[{'s.tracking_number': '2595'}, {'s.tracking_number': '1072'}, {'s.tracking_number': '7731'}, {'s.tracking_number': '9897'}, {'s.tracking_number': '4000'}, {'s.tracking_number': '4003'}, {'s.tracking_number': '4006'}, {'s.tracking_number': '4007'}, {'s.tracking_number': '4009'}, {'s.tracking_number': '4019'}]",
-Show all SwiftExpress shipments to Atlanta,False,1.0,0.6375504254231132,False,1.0,0.09800658872697102,MATCH (s:Shipment)-[:ASSIGNED_TO]->(c:Courier {name: 'SwiftExpress'})-[:BELONGS_TO]->(cust:Customer)-[:DELIVERED_TO]->(l:Location {name: 'Atlanta'}) RETURN s.tracking_number,[],
-Find shipments delivered before their expected date,False,0.75,0.9914248744384067,False,1.0,0.7570880060558728,MATCH (s:Shipment) WHERE s.expected_delivery_date > s.delivery_date RETURN s.tracking_number,"[{'s.tracking_number': '1072'}, {'s.tracking_number': '9897'}, {'s.tracking_number': '4000'}, {'s.tracking_number': '4009'}, {'s.tracking_number': '4010'}, {'s.tracking_number': '4011'}, {'s.tracking_number': '4013'}, {'s.tracking_number': '4019'}]",
-Which courier handled shipment 4013?,False,0.75,0.7987326491949895,False,1.0,0.6750233084971049,MATCH (s:Shipment {tracking_number: '4013'})-[:ASSIGNED_TO]->(courier:Courier) RETURN courier.name AS courier_handled,[{'courier_handled': 'FastShip'}],
-List all locations that shipments are going to from New York,False,1.0,0.23008551601143967,False,0.0,0.04071764971968335,MATCH (s:Shipment)-[:DELIVERED_TO]->(l:Location {name: 'New York'}) RETURN DISTINCT l.name,[{'l.name': 'New York'}],
-Show customers with pending shipments,False,1.0,0.27099198819001624,False,0.0,0.12965342207838373,MATCH (c:Customer)-[:BELONGS_TO]->(s:Shipment {status: 'Pending'}) RETURN c.name,[],
-Find shipments dispatched from Chicago but not yet delivered,False,1.0,0.6871604591077836,False,1.0,0.17334830173837312,"MATCH (s:Shipment)-[:DISPATCHED_FROM]->(chicago:Location {name: 'Chicago'})
+Which customers have shipments from San Francisco?,False,1.0,0.5466318153850762,False,0.0,0.23135224107593544,MATCH (c:Customer)-[:BELONGS_TO]->(s:Shipment)-[:DISPATCHED_FROM]->(:Location {name: 'San Francisco'}) RETURN DISTINCT c.name,[],
+"List shipments expected to arrive after June 1, 2024",True,0.5,1.0,True,1.0,1.0,"MATCH (s:Shipment) 
+WHERE s.expected_delivery_date > '2024-06-01' 
+RETURN s.tracking_number","[{'s.tracking_number': '2595'}, {'s.tracking_number': '1072'}, {'s.tracking_number': '7731'}, {'s.tracking_number': '9897'}, {'s.tracking_number': '4000'}, {'s.tracking_number': '4003'}, {'s.tracking_number': '4006'}, {'s.tracking_number': '4007'}, {'s.tracking_number': '4009'}, {'s.tracking_number': '4019'}]",
+Show all SwiftExpress shipments to Atlanta,False,1.0,0.7765269135075651,False,1.0,0.11617828197509603,MATCH (c:Courier {name: 'SwiftExpress'})-[:ASSIGNED_TO]->(s:Shipment)-[:DELIVERED_TO]->(l:Location {name: 'Atlanta'}) RETURN s.tracking_number,[],
+Find shipments delivered before their expected date,False,1.0,0.9826796824469858,True,0.0,1.0,"MATCH (s:Shipment)
+WHERE s.expected_delivery_date > s.delivery_date
+RETURN s.tracking_number","[{'s.tracking_number': '1072'}, {'s.tracking_number': '9897'}, {'s.tracking_number': '4000'}, {'s.tracking_number': '4009'}, {'s.tracking_number': '4010'}, {'s.tracking_number': '4011'}, {'s.tracking_number': '4013'}, {'s.tracking_number': '4019'}]",
+Which courier handled shipment 4013?,False,0.75,0.8153318407022985,False,1.0,0.7601150223111592,MATCH (s:Shipment {tracking_number: '4013'})-[:ASSIGNED_TO]->(courier:Courier) RETURN courier.name AS courier_handled,[{'courier_handled': 'FastShip'}],
+List all locations that shipments are going to from New York,False,1.0,0.2183653102797062,False,0.0,0.03791571822879314,MATCH (s:Shipment)-[:DELIVERED_TO]->(l:Location {name: 'New York'}) RETURN DISTINCT l.name,[{'l.name': 'New York'}],
+Show customers with pending shipments,False,1.0,0.2601324205380814,False,1.0,0.1576839249469552,"MATCH (c:Customer)-[:BELONGS_TO]->(s:Shipment)
+WHERE s.status = 'Pending'
+RETURN c.name AS customer_name, s.tracking_number AS tracking_number",[],
+Find shipments dispatched from Chicago but not yet delivered,False,1.0,0.6227633404920409,False,1.0,0.14492413106344335,"MATCH (s:Shipment)-[:DISPATCHED_FROM]->(chicago:Location {name: 'Chicago'})
 WHERE NOT (s)-[:DELIVERED_TO]->()
-RETURN s.tracking_number as tracking_number",[],
+RETURN s.tracking_number",[],
+List ParcelPro shipments with delivery dates in May 2024,False,1.0,0.36656662292110653,False,1.0,0.018361967418330963,"MATCH (s:Shipment) 
+WHERE s.expected_delivery_date >= '2024-05-01' AND s.expected_delivery_date < '2024-06-01' 
+RETURN s.tracking_number","[{'s.tracking_number': '1234'}, {'s.tracking_number': '5678'}, {'s.tracking_number': '3141'}, {'s.tracking_number': '4001'}, {'s.tracking_number': '4002'}, {'s.tracking_number': '4010'}, {'s.tracking_number': '4011'}, {'s.tracking_number': '4013'}, {'s.tracking_number': '4014'}, {'s.tracking_number': '4016'}, {'s.tracking_number': '4018'}]",
 Which shipments have missing delivery dates?,,,,,,,,,"{code: Neo.ClientError.Statement.SyntaxError} {message: The property existence syntax `... exists(variable.property)` is no longer supported. Please use `variable.property IS NOT NULL` instead. (line 2, column 11 (offset: 29))
-""WHERE NOT exists(s.expected_delivery_date)""
+""WHERE NOT EXISTS(s.expected_delivery_date)""
            ^}"
-Show customers with both delivered and pending shipments,False,1.0,0.40852023960744444,False,0.0,0.12399758977264733,"MATCH (c:Customer)-[:BELONGS_TO]->(s:Shipment)
+Show customers with both delivered and pending shipments,False,1.0,0.35037485681741953,False,1.0,0.06344467017801857,"MATCH (c:Customer)-[:BELONGS_TO]->(s:Shipment)
 WITH c, collect(DISTINCT s.status) AS statuses
-WHERE 'Delivered' IN statuses AND 'Pending' IN statuses
+WHERE 'DELIVERED' IN statuses AND 'PENDING' IN statuses
 RETURN c.name as customer_name",[],
-List shipments that took more than 5 days to deliver,,,,,,,,,"{code: Neo.ClientError.Procedure.ProcedureCallFailed} {message: Invalid call signature for Between: Provided input was [String(""2024-05-25""), String(""2024-05-30"")]}"
-Find shipments going from Miami to Boston,False,1.0,0.7702211726650867,False,0.0,0.05154513736208366,MATCH (s:Shipment)-[:DISPATCHED_FROM]->(miami:Location {name: 'Miami'})-[:DELIVERED_TO]->(boston:Location {name: 'Boston'}) RETURN s.tracking_number,[],
+List shipments that took more than 5 days to deliver,False,0.6,0.4437413948669767,False,0.0,0.19031554225749522,"MATCH (s:Shipment)-[:DELIVERED_TO]->(del_loc:Location)-[:DISPATCHED_FROM]->(d_loc:Location)
+WHERE duration.between(s.dispatch_date, s.delivered_date).days > 5
+RETURN s.tracking_number",[],
+Find shipments going from Miami to Boston,False,1.0,0.7713810649502776,True,1.0,1.0,MATCH (s:Shipment)-[:DISPATCHED_FROM]->(miami:Location {name: 'Miami'})-[:DELIVERED_TO]->(boston:Location {name: 'Boston'}) RETURN s.tracking_number,[],
 Show average delivery time for FastShip,,,,,,,,,"{code: Neo.ClientError.Statement.SyntaxError} {message: Invalid input 'To': expected 'FOREACH', 'ALTER', 'ORDER BY', 'CALL', 'USING PERIODIC COMMIT', 'CREATE', 'LOAD CSV', 'START DATABASE', 'STOP DATABASE', 'DEALLOCATE', 'DELETE', 'DENY', 'DETACH', 'DROP', 'DRYRUN', 'FINISH', 'GRANT', 'INSERT', 'LIMIT', 'MATCH', 'MERGE', 'NODETACH', 'OFFSET', 'OPTIONAL', 'REALLOCATE', 'REMOVE', 'RENAME', 'RETURN', 'REVOKE', 'ENABLE SERVER', 'SET', 'SHOW', 'SKIP', 'TERMINATE', 'UNWIND', 'USE' or 'WITH' (line 1, column 1 (offset: 0))
 ""To show the average delivery time for shipments handled by FastShip, you can use the following Cypher query:""
  ^}"
+List shipments with duplicate tracking numbers,,,,,,,,,"{code: Neo.ClientError.Statement.SyntaxError} {message: Invalid input 'To': expected 'FOREACH', 'ALTER', 'ORDER BY', 'CALL', 'USING PERIODIC COMMIT', 'CREATE', 'LOAD CSV', 'START DATABASE', 'STOP DATABASE', 'DEALLOCATE', 'DELETE', 'DENY', 'DETACH', 'DROP', 'DRYRUN', 'FINISH', 'GRANT', 'INSERT', 'LIMIT', 'MATCH', 'MERGE', 'NODETACH', 'OFFSET', 'OPTIONAL', 'REALLOCATE', 'REMOVE', 'RENAME', 'RETURN', 'REVOKE', 'ENABLE SERVER', 'SET', 'SHOW', 'SKIP', 'TERMINATE', 'UNWIND', 'USE' or 'WITH' (line 1, column 1 (offset: 0))
+""To list shipments with duplicate tracking numbers, you can use the following Cypher query:""
+ ^}"
+Find shipments delivered on weekends,,,,,,,,,"{code: Neo.ClientError.Statement.SyntaxError} {message: Unknown function 'apoc.date.isWeekend' (line 2, column 7 (offset: 25))
+""WHERE apoc.date.isWeekend(date(s.expected_delivery_date))""
+       ^}"
+Show customers with shipments handled by multiple couriers,False,0.6666666666666666,0.4023209653652816,True,1.0,0.9959815596098522,"MATCH (c:Customer)-[:BELONGS_TO]->(s:Shipment)-[:ASSIGNED_TO]->(courier:Courier)
+WITH c, COUNT(DISTINCT courier) AS numCouriers
+WHERE numCouriers > 1
+RETURN c.name as customer, numCouriers as num_couriers",[],
+List shipments that changed delivery location,False,0.3333333333333333,0.25285275902181403,True,1.0,1.0,"MATCH (s:Shipment)-[r:DELIVERED_TO]->(old_loc:Location)-[:DELIVERED_TO]->(new_loc:Location)
+RETURN s.tracking_number AS tracking_number, old_loc.name AS old_delivery_location, new_loc.name AS new_delivery_location",[],
 Find shipments with conflicting status and dates,,,,,,,,,"{code: Neo.ClientError.Statement.SyntaxError} {message: Invalid input 'To': expected 'FOREACH', 'ALTER', 'ORDER BY', 'CALL', 'USING PERIODIC COMMIT', 'CREATE', 'LOAD CSV', 'START DATABASE', 'STOP DATABASE', 'DEALLOCATE', 'DELETE', 'DENY', 'DETACH', 'DROP', 'DRYRUN', 'FINISH', 'GRANT', 'INSERT', 'LIMIT', 'MATCH', 'MERGE', 'NODETACH', 'OFFSET', 'OPTIONAL', 'REALLOCATE', 'REMOVE', 'RENAME', 'RETURN', 'REVOKE', 'ENABLE SERVER', 'SET', 'SHOW', 'SKIP', 'TERMINATE', 'UNWIND', 'USE' or 'WITH' (line 1, column 1 (offset: 0))
 ""To find shipments with conflicting status and dates, you can use the following Cypher query:""
  ^}"
