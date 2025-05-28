@@ -13,12 +13,16 @@ A system for managing and querying shipment data using Neo4j graph database, wit
 - [Future Work](#-future-work)
 <br></br>
 ## 🌟 Project Overview
-**Objective**: Create an intelligent logistics agent that can:
+**Objective**: 
+
+Create an intelligent logistics agent that can:
 - Convert natural language queries to Cypher
 - Retrieve shipment data from Neo4j knowledge graph
 - Evaluate different query generation strategies
 
-**Why?** Demonstrate:
+**Why?** 
+
+Demonstrate:
 - Graph database capabilities for logistics
 - Comparison of RAG vs traditional approaches
 - Automated evaluation framework for NL-to-Cypher systems
@@ -146,7 +150,8 @@ python3 bots/rag_bot.py
 6. Answer Correctness Score
 <br></br>
 ## 📈 Results
-Full results in `data/evaluation_summary.txt`
+Full results in [data/evaluation_summary.txt](data/evaluation_summary.txt)
+
 <br></br>
 ## 🔮 Future Work
 - Add temporal query support
