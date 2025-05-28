@@ -7,7 +7,8 @@
     "dispatch_date": "2024-05-25",
     "expected_delivery_date": "2024-05-30",
     "courier": "FastShip",
-    "customer": "Alice Smith"
+    "customer": "Alice Smith",
+    "delivery_date": null
   },
   {
     "tracking_number": "5678",
@@ -18,7 +19,8 @@
     "expected_delivery_date": "2024-05-23",
     "delivery_date": "2024-05-22",
     "courier": "SwiftExpress",
-    "customer": "Bob Johnson"
+    "customer": "Bob Johnson",
+    "delivery_date": null
   },
   {
     "tracking_number": "9101",
@@ -28,7 +30,8 @@
     "dispatch_date": null,
     "expected_delivery_date": null,
     "courier": "QuickMove",
-    "customer": "Carol Lee"
+    "customer": "Carol Lee",
+    "delivery_date": null
   },
   {
     "tracking_number": "1121",
@@ -38,7 +41,8 @@
     "dispatch_date": "2024-05-26",
     "expected_delivery_date": "2024-06-01",
     "courier": "FastShip",
-    "customer": "David Kim"
+    "customer": "David Kim",
+    "delivery_date": null
   },
   {
     "tracking_number": "3141",
@@ -49,6 +53,327 @@
     "expected_delivery_date": "2024-05-18",
     "delivery_date": "2024-05-18",
     "courier": "SwiftExpress",
-    "customer": "Eva Martinez"
+    "customer": "Eva Martinez",
+    "delivery_date": null
+  },
+  {
+    "tracking_number": "6501",
+    "dispatch_location": "Austin",
+    "delivery_location": "San Francisco",
+    "status": "Pending Dispatch",
+    "dispatch_date": null,
+    "expected_delivery_date": null,
+    "courier": "ParcelPro",
+    "customer": "Oscar White",
+    "delivery_date": null
+  },
+  {
+    "tracking_number": "2595",
+    "dispatch_location": "Chicago",
+    "delivery_location": "Denver",
+    "status": "In Transit",
+    "dispatch_date": "2025-05-26",
+    "expected_delivery_date": "2025-06-02",
+    "courier": "ParcelPro",
+    "customer": "Wendy Lin",
+    "delivery_date": null
+  },
+  {
+    "tracking_number": "2724",
+    "dispatch_location": "Las Vegas",
+    "delivery_location": "Atlanta",
+    "status": "Pending Dispatch",
+    "dispatch_date": null,
+    "expected_delivery_date": null,
+    "courier": "SwiftExpress",
+    "customer": "Carol Lee",
+    "delivery_date": null
+  },
+  {
+    "tracking_number": "1072",
+    "dispatch_location": "Los Angeles",
+    "delivery_location": "Denver",
+    "status": "Delivered",
+    "dispatch_date": "2025-05-25",
+    "expected_delivery_date": "2025-05-31",
+    "courier": "ParcelPro",
+    "customer": "Mona Patel",
+    "delivery_date": "2025-05-27"
+  },
+  {
+    "tracking_number": "7731",
+    "dispatch_location": "Denver",
+    "delivery_location": "Dallas",
+    "status": "Delivered",
+    "dispatch_date": "2025-05-18",
+    "expected_delivery_date": "2025-05-24",
+    "courier": "FastShip",
+    "customer": "Nina Brown",
+    "delivery_date": "2025-05-24"
+  },
+  {
+    "tracking_number": "9897",
+    "dispatch_location": "Portland",
+    "delivery_location": "Atlanta",
+    "status": "Delivered",
+    "dispatch_date": "2025-05-23",
+    "expected_delivery_date": "2025-05-28",
+    "courier": "FastShip",
+    "customer": "Uma Fox",
+    "delivery_date": "2025-05-26"
+  },
+  {
+    "tracking_number": "8824",
+    "dispatch_location": "Houston",
+    "delivery_location": "San Francisco",
+    "status": "Pending Dispatch",
+    "dispatch_date": null,
+    "expected_delivery_date": null,
+    "courier": "ShipRight",
+    "customer": "Mona Patel",
+    "delivery_date": null
+  },
+  {
+    "tracking_number": "5879",
+    "dispatch_location": "San Diego",
+    "delivery_location": "Atlanta",
+    "status": "Pending Dispatch",
+    "dispatch_date": null,
+    "expected_delivery_date": null,
+    "courier": "FastShip",
+    "customer": "Jack Wilson",
+    "delivery_date": null
+  },
+  {
+    "tracking_number": "7107",
+    "dispatch_location": "San Francisco",
+    "delivery_location": "Boston",
+    "status": "Pending Dispatch",
+    "dispatch_date": null,
+    "expected_delivery_date": null,
+    "courier": "FastShip",
+    "customer": "David Kim",
+    "delivery_date": null
+  },
+  {
+    "tracking_number": "4000",
+    "dispatch_location": "Minneapolis",
+    "delivery_location": "Austin",
+    "courier": "SwiftExpress",
+    "customer": "Mona Patel",
+    "status": "Delivered",
+    "dispatch_date": "2024-06-01",
+    "expected_delivery_date": "2024-06-05",
+    "delivery_date": "2024-06-02"
+  },
+  {
+    "tracking_number": "4001",
+    "dispatch_location": "Chicago",
+    "delivery_location": "Denver",
+    "courier": "ParcelPro",
+    "customer": "Wendy Hill",
+    "status": "In Transit",
+    "dispatch_date": "2024-05-10",
+    "expected_delivery_date": "2024-05-17",
+    "delivery_date": null
+  },
+  {
+    "tracking_number": "4002",
+    "dispatch_location": "Las Vegas",
+    "delivery_location": "Atlanta",
+    "courier": "SwiftExpress",
+    "customer": "Carol Lee",
+    "status": "In Transit",
+    "dispatch_date": "2024-05-20",
+    "expected_delivery_date": "2024-05-22",
+    "delivery_date": null
+  },
+  {
+    "tracking_number": "4003",
+    "dispatch_location": "Denver",
+    "delivery_location": "Philadelphia",
+    "courier": "ParcelPro",
+    "customer": "Alice Smith",
+    "status": "In Transit",
+    "dispatch_date": "2024-05-29",
+    "expected_delivery_date": "2024-06-04",
+    "delivery_date": null
+  },
+  {
+    "tracking_number": "4004",
+    "dispatch_location": "Nashville",
+    "delivery_location": "San Diego",
+    "courier": "QuickMove",
+    "customer": "Ivy Turner",
+    "status": "Pending Dispatch",
+    "dispatch_date": null,
+    "expected_delivery_date": null,
+    "delivery_date": null
+  },
+  {
+    "tracking_number": "4005",
+    "dispatch_location": "Houston",
+    "delivery_location": "San Diego",
+    "courier": "ParcelPro",
+    "customer": "Rita Adams",
+    "status": "Pending Dispatch",
+    "dispatch_date": null,
+    "expected_delivery_date": null,
+    "delivery_date": null
+  },
+  {
+    "tracking_number": "4006",
+    "dispatch_location": "Orlando",
+    "delivery_location": "Phoenix",
+    "courier": "ParcelPro",
+    "customer": "Karen Young",
+    "status": "In Transit",
+    "dispatch_date": "2024-05-30",
+    "expected_delivery_date": "2024-06-05",
+    "delivery_date": null
+  },
+  {
+    "tracking_number": "4007",
+    "dispatch_location": "Minneapolis",
+    "delivery_location": "Las Vegas",
+    "courier": "SwiftExpress",
+    "customer": "Nina Brown",
+    "status": "In Transit",
+    "dispatch_date": "2024-06-01",
+    "expected_delivery_date": "2024-06-03",
+    "delivery_date": null
+  },
+  {
+    "tracking_number": "4008",
+    "dispatch_location": "San Francisco",
+    "delivery_location": "Detroit",
+    "courier": "ParcelPro",
+    "customer": "Paula Green",
+    "status": "Pending Dispatch",
+    "dispatch_date": null,
+    "expected_delivery_date": null,
+    "delivery_date": null
+  },
+  {
+    "tracking_number": "4009",
+    "dispatch_location": "San Diego",
+    "delivery_location": "Tampa",
+    "courier": "QuickMove",
+    "customer": "Bob Johnson",
+    "status": "Delivered",
+    "dispatch_date": "2024-05-29",
+    "expected_delivery_date": "2024-06-02",
+    "delivery_date": "2024-05-31"
+  },
+  {
+    "tracking_number": "4010",
+    "dispatch_location": "Boston",
+    "delivery_location": "New York",
+    "courier": "FastShip",
+    "customer": "Zane Kelly",
+    "status": "Delivered",
+    "dispatch_date": "2024-05-16",
+    "expected_delivery_date": "2024-05-20",
+    "delivery_date": "2024-05-18"
+  },
+  {
+    "tracking_number": "4011",
+    "dispatch_location": "New York",
+    "delivery_location": "Nashville",
+    "courier": "SwiftExpress",
+    "customer": "Paula Green",
+    "status": "Delivered",
+    "dispatch_date": "2024-05-26",
+    "expected_delivery_date": "2024-05-31",
+    "delivery_date": "2024-05-29"
+  },
+  {
+    "tracking_number": "4012",
+    "dispatch_location": "Portland",
+    "delivery_location": "San Diego",
+    "courier": "ShipRight",
+    "customer": "Tina Evans",
+    "status": "In Transit",
+    "dispatch_date": "2024-05-26",
+    "expected_delivery_date": "2024-06-01",
+    "delivery_date": null
+  },
+  {
+    "tracking_number": "4013",
+    "dispatch_location": "Boston",
+    "delivery_location": "Dallas",
+    "courier": "FastShip",
+    "customer": "Jack White",
+    "status": "Delivered",
+    "dispatch_date": "2024-05-19",
+    "expected_delivery_date": "2024-05-25",
+    "delivery_date": "2024-05-23"
+  },
+  {
+    "tracking_number": "4014",
+    "dispatch_location": "Orlando",
+    "delivery_location": "Portland",
+    "courier": "ParcelPro",
+    "customer": "Zane Kelly",
+    "status": "In Transit",
+    "dispatch_date": "2024-05-16",
+    "expected_delivery_date": "2024-05-19",
+    "delivery_date": null
+  },
+  {
+    "tracking_number": "4015",
+    "dispatch_location": "Nashville",
+    "delivery_location": "Chicago",
+    "courier": "ParcelPro",
+    "customer": "Ivy Turner",
+    "status": "Pending Dispatch",
+    "dispatch_date": null,
+    "expected_delivery_date": null,
+    "delivery_date": null
+  },
+  {
+    "tracking_number": "4016",
+    "dispatch_location": "Dallas",
+    "delivery_location": "Seattle",
+    "courier": "ParcelPro",
+    "customer": "Grace Lee",
+    "status": "In Transit",
+    "dispatch_date": "2024-05-13",
+    "expected_delivery_date": "2024-05-16",
+    "delivery_date": null
+  },
+  {
+    "tracking_number": "4017",
+    "dispatch_location": "Minneapolis",
+    "delivery_location": "Portland",
+    "courier": "ParcelPro",
+    "customer": "Rita Adams",
+    "status": "Pending Dispatch",
+    "dispatch_date": null,
+    "expected_delivery_date": null,
+    "delivery_date": null
+  },
+  {
+    "tracking_number": "4018",
+    "dispatch_location": "Atlanta",
+    "delivery_location": "Miami",
+    "courier": "QuickMove",
+    "customer": "Sam Baker",
+    "status": "In Transit",
+    "dispatch_date": "2024-05-15",
+    "expected_delivery_date": "2024-05-18",
+    "delivery_date": null
+  },
+  {
+    "tracking_number": "4019",
+    "dispatch_location": "Los Angeles",
+    "delivery_location": "Phoenix",
+    "courier": "SwiftExpress",
+    "customer": "Mona Patel",
+    "status": "Delivered",
+    "dispatch_date": "2024-06-05",
+    "expected_delivery_date": "2024-06-08",
+    "delivery_date": "2024-06-07"
   }
 ]
+

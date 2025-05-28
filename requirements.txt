@@ -4,3 +4,6 @@ langchain
 langchain[openai]
 neo4j 
 pandas
+deepeval
+sentence-transformers
+pip install faiss-cpu
