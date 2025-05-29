@@ -12,13 +12,18 @@ class InteractiveBot(BaseBot):
         self.llm = ChatOpenAI(model="gpt-4", temperature=0)
         self.few_shot_bot = FewShotBot()
     def generate_cypher(self, query):
-        return self.few_shot_bot.generate_cypher(query)
-    def working_hour(self, query):
+        cypher = self.few_shot_bot.generate_cypher(query)
+        cypher_answer = self.execute_cypher(cypher)
+        return cypher, cypher_answer
+    def generate_answer(self, questions, cypher=None, cypher_answer=None):
         prompt = f"""
-            You are a helpful business assistant. 
+            You are a helpful business assistant that answers question about Logistics or business. 
             You can answer questions about the business’s working hours
             (e.g., 'We are open from 7 am to 6 pm, Monday to Friday.') 
-            Answer the user query: {query}
+            If the user is asking about a shipment details then
+            Here is the cypher generted for it: {cypher}
+            Here is the answer from executing that cypher on the knowledge graph: {cypher_answer}
+            Answer the user query: {questions}
         """
         response = self.llm.invoke(prompt)
         return response.content
@@ -30,7 +35,8 @@ if __name__ == "__main__":
         user_input = input("Ask me anything (exit to quit): ")
         if user_input == "exit":
             break
-        if "hours" in user_input or "work" in user_input or "business" in user_input:
-            print(f"🤖 Bot: {bot.working_hour(user_input)}")
+        if "hours" in user_input or "work" in user_input or "business" in user_input or "open" in user_input:
+            print(f"🤖 Bot: {bot.generate_answer(user_input)}")
         else:
-            print(f"🤖 Bot: {bot.generate_cypher(user_input)}")
+            cypher, cypher_answer = bot.generate_cypher(user_input)
+            print(f"🤖 Bot: {bot.generate_answer(user_input, cypher, cypher_answer)}")
