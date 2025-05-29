@@ -45,6 +45,7 @@ Demonstrate:
 <br></br>
 ## 🛠 Technical Implementation
 ### Tech Stack
+- **frontend**: FastAPI, HTML, JS
 - **Database**: Neo4j
 - **LLM**: OpenAI GPT-4
 - **Evaluation**: deepeval
@@ -58,8 +59,10 @@ Demonstrate:
 ├── core/ # Database and evaluation core
 ├── data/ # Datasets and results
 ├── scripts/ # Data processing scripts
+├── frontend/ # FastAPI backend and HTML/JS frontend
 ├── run.sh # Main execution script
 └── requirements.txt # Dependencies
+
 ```
 <br></br>
 ## 💻 Installation
@@ -139,10 +142,18 @@ python3 bots/few_shot_bot.py
 ```
 python3 bots/rag_bot.py
 ```
-7. Interact with the Bot
-```
-python3 bots/interactive_bot.py
-```
+7. Interact with the Frontend
+    * Run the FastAPI Backend
+      ```
+      uvicorn frontend.web_api:app --reload --port 8000
+      ```
+      The API will be available at http://localhost:8000.
+    * Serve the Frontend
+      ```
+      cd frontend
+      python -m http.server 8080
+      ```
+      Then visit http://localhost:8080/
 <br></br>
 ## 📊 Evaluation
 **Metrics**
