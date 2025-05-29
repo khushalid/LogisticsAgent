@@ -135,9 +135,13 @@ python3 bots/no_context_bot.py
 ```
 python3 bots/few_shot_bot.py
 ```
-3. Evaluate RAG Bot
+6. Evaluate RAG Bot
 ```
 python3 bots/rag_bot.py
+```
+7. Interact with the Bot
+```
+python3 bots/interactive_bot.py
 ```
 <br></br>
 ## 📊 Evaluation
