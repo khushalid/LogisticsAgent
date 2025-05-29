@@ -17,7 +17,7 @@ python3 scripts/generate_expected_output.py \
 
 # Step 3: Train test split
 echo "📊 Generating test dataset..."
-python3 -m scripts.generate_dataset --test-size 0.3
+python3 -m scripts.generate_dataset --test-size 0.2
 
 # Step 4: Evaluate No Context Bot
 echo "🤖 Evaluating No Context Bot..."

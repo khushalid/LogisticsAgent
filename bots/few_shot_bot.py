@@ -73,7 +73,7 @@ class FewShotBot(BaseBot):
         system_prompt = f"""
                     "You are an expert in Neo4j Cypher queries. 
                     Given a user question and the schema, generate the correct Cypher query.
-                    \n\nSchema:\n{self.knowledge_graph_schema}. 
+                    \n\nSchema:\n{self.knowledge_graph_schema()}. 
                     Here are few examples of cypher query you can refer to {self.example_query}. 
                     Make sure the tracking_number is a string and if not specifically asked about what details the user want just return the tracking number.
             """
