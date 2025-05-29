@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Logistics Agent Chatbot</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2em; }
+        #chat { max-width: 600px; margin: auto; }
+        .bot { color: #0074D9; }
+        .user { color: #2ECC40; }
+    </style>
+</head>
+<body>
+    <div id="chat">
+        <h2>Logistics Agent</h2>
+        <div id="messages"></div>
+        <input id="user_input" type="text" placeholder="Ask me anything..." style="width:80%">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+    <script>
+        function addMessage(role, text) {
+            const msgDiv = document.getElementById('messages');
+            const p = document.createElement('p');
+            p.className = role;
+            p.textContent = (role === 'user' ? 'You: ' : 'Bot: ') + text;
+            msgDiv.appendChild(p);
+            msgDiv.scrollTop = msgDiv.scrollHeight;
+        }
+        async function sendMessage() {
+            const input = document.getElementById('user_input');
+            const text = input.value;
+            if (!text) return;
+            addMessage('user', text);
+            input.value = '';
+            const res = await fetch('http://localhost:8000/chat', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({user_input: text})
+            });
+            const data = await res.json();
+            addMessage('bot', data.response);
+        }
+    </script>
+</body>
+</html>
