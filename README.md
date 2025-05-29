@@ -154,7 +154,11 @@ python3 bots/interactive_bot.py
 6. Answer Correctness Score
 <br></br>
 ## 📈 Results
+<img src="data/Screenshot 2025-05-29 at 9.35.59 AM.png" width="800">
+
 Full results in [data/evaluation_summary.txt](data/evaluation_summary.txt)
+
+
 
 <br></br>
 ## 🔮 Future Work
