@@ -20,7 +20,8 @@ class NoContextBot(BaseBot):
     def generate_cypher(self, natural_query: str) -> str:
         """Generate Cypher without RAG context"""
         prompt = f"""
-        You are a Neo4j Cypher expert. Generate a query for:
+        You are a helpful Neo4j Cypher expert. 
+        Generate a query for:
         {natural_query}
         
         Return ONLY the Cypher query in this format:
